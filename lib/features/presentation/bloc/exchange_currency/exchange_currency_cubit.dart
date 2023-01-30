@@ -8,8 +8,7 @@ import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../data/remote/models/currency_model.dart';
-import '../../../domain/use_cases/add_new_exhcange_currency_usecase.dart';
-import '../../../domain/use_cases/get_exhange_currency_usecase.dart';
+ import '../../../domain/use_cases/get_exhange_currency_usecase.dart';
 
 part 'exchange_currency_state.dart';
 
@@ -17,13 +16,11 @@ class ExchangeCurrencyCubit extends Cubit<ExchangeCurrencyState> {
   ExchangeCurrencyCubit(
   {
     required this.getExchangeCurrencyUseCase,
-    required this.addNewExchangeCurrencyUseCase
-}
+ }
 
       ) : super(ExchangeCurrencyInitial());
   GetExchangeCurrencyUseCase getExchangeCurrencyUseCase;
-  AddNewExchangeCurrencyUseCase addNewExchangeCurrencyUseCase;
-  Future<void> getExchangeCurrency({
+   Future<void> getExchangeCurrency({
     required String code})async{
       List<ExchangeCurrencyEntity> exchangeList=[];
 
@@ -45,22 +42,6 @@ class ExchangeCurrencyCubit extends Cubit<ExchangeCurrencyState> {
     }
 
   }
- Future<void> AddExchangeCurrency({
-    required ExchangeCurrencyEntity exchangeCurrencyEntity})async{
-     emit(ExchangeCurrencyLoading());
-     try{
 
-        await addNewExchangeCurrencyUseCase.call(exchangeCurrencyEntity);       //
-      //     allPosts.addAll(value)
-      // );
-      emit(AddExchangeCurrencyLoaded(exchangeCurrencyModel: exchangeCurrencyEntity));
-
-    }on SocketException catch(_){
-      emit(ExchangeCurrencyFailure());
-    }catch(_){
-      emit(ExchangeCurrencyFailure());
-    }
-
-  }
 
 }

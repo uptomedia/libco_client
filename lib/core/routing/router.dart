@@ -10,11 +10,10 @@ import 'package:chegg/features/presentation/screen/home/presentation/screens/ord
 import 'package:chegg/features/presentation/screen/home/presentation/screens/paymeny_method_screen.dart';
 import 'package:chegg/features/presentation/screen/home/presentation/screens/send_money_screen.dart';
 import 'package:chegg/features/presentation/screen/home/presentation/screens/transfer_info_screen.dart';
-import 'package:chegg/features/presentation/screen/home/presentation/screens/add_new_provider_screen.dart';
 import 'package:flutter/material.dart';
 
 
-import '../../features/presentation/screen/home/presentation/screens/detail_provider_screen.dart';
+import '../../features/presentation/screen/home/presentation/screens/exchange_money_screen.dart';
 import '../../features/presentation/screen/home/presentation/screens/home_screen.dart';
 import '../../features/presentation/screen/navigation/presentation/screens/app_main_screen.dart';
 
@@ -67,15 +66,10 @@ class AppRouter {
             builder: (_) => OrderDetailScreen(
                 // settings.arguments as HomeScreenArgs
                 ));
-        case RoutePaths.AddNewProviderScreen:
+        case RoutePaths.ExchangeMoneyScreen:
         return MaterialPageRoute(
-            builder: (_) => AddNewProviderScreen(
+            builder: (_) => ExchangeMoneyScreen(
                 // settings.arguments as HomeScreenArgs
-                ));
-        case RoutePaths.DetailsProviderScreen:
-        return MaterialPageRoute(
-            builder: (_) => DetailsProviderScreen(
-              providerEntity: settings.arguments as ProviderEntity
                 ));
       default:
         return MaterialPageRoute(

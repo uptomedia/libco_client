@@ -201,24 +201,24 @@ class _SettingScreenState extends StatefulWidgetState<SettingScreen>
                                             color: Styles.textBlackColor,
                                             fontSize: Styles.fontSize11,
                                             fontWeight: FontWeight.w400)),
-                  BlocConsumer<UserCubit,UserState>(
-                  bloc: BlocProvider.of<UserCubit>(context),
-                  listener: (context, UserState state) {
+    BlocConsumer<UserCubit,UserState>(
+    bloc: BlocProvider.of<UserCubit>(context),
+    listener: (context, UserState state) {
                   print(state);
                   if(state is UserInitial){}
                   }
 
                   ,
-                  builder:  (context,state){
-                  if (userState is ProfileLoaded  ){
-                  return
-                  _buildTitle(
-                  Provider.of<SelectedProvider>(context, listen: false).userEntity.name??"",
-                  Styles.textStyle.copyWith(
-                  color: Styles.textBlackColor,
-                  fontSize: Styles.fontSize15,
-                  fontWeight: FontWeight.w600));}
-                  return SizedBox(height: 8.h,width: 10.w,child:CircularProgressIndicator());
+        builder:  (context,state){
+          if (userState is ProfileLoaded  ){
+      return
+                                    _buildTitle(
+                                        Provider.of<SelectedProvider>(context, listen: false).userEntity.name??"",
+                                        Styles.textStyle.copyWith(
+                                            color: Styles.textBlackColor,
+                                            fontSize: Styles.fontSize15,
+                                            fontWeight: FontWeight.w600));}
+          return SizedBox(height: 8.h,width: 10.w,child:CircularProgressIndicator());
                   }),
                                   ],
                                 )),
@@ -301,7 +301,13 @@ class _SettingScreenState extends StatefulWidgetState<SettingScreen>
                 titleColor: Styles.FontColorBlack,
               )),
 
-
+          // Expanded(
+          //     child: _buildTitle(
+          //         "langauge",
+          //         Styles.fontStyle.copyWith(
+          //             fontWeight: FontWeight.w400,
+          //             fontSize: Styles.fontSize16,
+          //             color: Styles.textBlackColor))),
           SizedBox(
             child: Container(
                 child: ClipRRect(

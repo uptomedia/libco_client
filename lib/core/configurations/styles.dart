@@ -181,7 +181,56 @@ class Styles {
         ],
         // color :Color(0xffE8F5ED),
       );
+  static BoxDecoration decotrationBorderBoxStyled({
+    double radius = 0,
+    Color backgroundColor = const Color(0xffE8F5ED),
+    Offset dropOffset = const Offset(0, 27.6),
+    double dropspreadRadius = 0,
+    double dropblurRadius = 55.2,
+    Color dropShadawColor = const Color(0xFF2E312F),
+    Offset innerOffset1 = const Offset(0, -8.65),
+    double innerspreadRadius1 = 0,
+    double innerblurRadius1 = 8.65,
+    Color innerShadawColor1 = const Color(0xFFD6E2DB),
+    Offset innerOffset2 = const Offset(-0, 8.65),
+    double innerspreadRadius2 = 0,
+    double innerblurRadius2 = 8.65,
+    Color innerShadawColor2 = const Color(0xFFF6FFFC),
+  }) =>
+      BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(radius.r),
+          topRight: Radius.circular(radius.r),
+          bottomLeft: Radius.circular(radius.r),
+          bottomRight: Radius.circular(radius.r),
+        ),
+             border: Border.all(color: colorPrimary),
 
+        color: backgroundColor,
+        boxShadow: [
+          BoxShadow(
+            color: innerShadawColor2,
+            offset: innerOffset2,
+            blurRadius: innerblurRadius2,
+            blurStyle: BlurStyle.inner,
+            spreadRadius: innerspreadRadius2,
+          ),
+          BoxShadow(
+            color: innerShadawColor1,
+            offset: innerOffset1,
+            blurRadius: innerblurRadius1,
+            blurStyle: BlurStyle.inner,
+            spreadRadius: innerspreadRadius1,
+          ),
+          BoxShadow(
+            color: dropShadawColor,
+            offset: dropOffset,
+            spreadRadius: dropspreadRadius,
+            blurRadius: dropblurRadius,
+          ),
+        ],
+        // color :Color(0xffE8F5ED),
+      );
   static BoxDecoration decotrationBoxStyledWithGradient({
     double radius = 0,
     Color backgroundColor1 = const Color(0xffE8F5ED),

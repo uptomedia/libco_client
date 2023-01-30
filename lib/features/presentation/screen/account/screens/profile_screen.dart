@@ -95,24 +95,22 @@ bool shouldSave=false;
       passed = true;
     }
     if(BlocProvider.of<UserCubit>(context).state is UserInitial
-        || BlocProvider.of<UserCubit>(context).state is UserLoading
+   || BlocProvider.of<UserCubit>(context).state is UserLoading
         ||BlocProvider.of<UserCubit>(context).state is UserFailure
     // ||BlocProvider.of<UserCubit>(context).state is UserSuccess
     )
       BlocProvider.of<UserCubit>(context).getUserProfile(uid:
       Constants.UID);
-    else {
-      profileLoadedTMP =
-          Provider
-              .of<SelectedProvider>(context, listen: false)
-              .userEntity;
-      _userNameController.text = profileLoadedTMP.name ?? "";
-      _passWordController.text = profileLoadedTMP.password ?? "";
-      _phoneNumberController.text = profileLoadedTMP.status ?? "";
+    else{
+
+
+    profileLoadedTMP=
+    Provider.of<SelectedProvider>(context, listen: false).userEntity;
+    _userNameController.text=profileLoadedTMP!.name??"";
+    _passWordController.text=profileLoadedTMP!.password??"";
+    _phoneNumberController.text=profileLoadedTMP!.status??"";
     }
 
-      BlocProvider.of<UserCubit>(context).getUserProfile(uid:
-      Constants.UID);
     shouldSave=false;
     pick = false;
     setvalueKey();
@@ -128,7 +126,7 @@ bool shouldSave=false;
     // TODO: implement dispose
     super.dispose();
   }
-  late UserEntity profileLoadedTMP;
+    UserEntity? profileLoadedTMP;
   Future<void> refreshData()async {
     BlocProvider.of<UserCubit>(context).getUserProfile(uid:
     Constants.UID);
@@ -169,7 +167,7 @@ bool shouldSave=false;
               },
               builder: (context, userState) {
                 if (userState is ProfileLoaded  ||
-                    userState is UpdateProfileLoaded) {
+                    userState is UpdateProfileLoaded&& profileLoadedTMP!=null) {
 
                   return
 
@@ -212,7 +210,7 @@ GestureDetector(
     if(shouldSave){
       BlocProvider.of<UserCubit>(context).updateUserProfile(userEntity:
 
-      profileLoadedTMP);
+      profileLoadedTMP!);
       shouldSave=false;
     }
   },
@@ -297,11 +295,11 @@ GestureDetector(
                     focusNode: _userNameFocusNode,
                     textInputAction: TextInputAction.next,
                     onChanged: (value){
-                      profileLoadedTMP.name=value;
+                      profileLoadedTMP!.name=value;
 
                     },
                     onFieldSubmitted: (value) {
-                      profileLoadedTMP.name=value;
+                      profileLoadedTMP!.name=value;
                     },
                     validator: (value) {
                       if (Validators.isNotEmptyString(value ?? '')) {
@@ -438,11 +436,11 @@ GestureDetector(
                   textInputAction: TextInputAction.next,
                   onChanged:
                   (value){
-                    profileLoadedTMP.status=value;
+                    profileLoadedTMP!.status=value;
 
                   },
                   onFieldSubmitted: (value) {
-                    profileLoadedTMP.status=value;
+                    profileLoadedTMP!.status=value;
 
                   },
                   validator: (value) {
@@ -562,11 +560,11 @@ GestureDetector(
                   focusNode: _passWordFocusNode,
                   textInputAction: TextInputAction.next,
                   onChanged: (value){
-                    profileLoadedTMP.password=value;
+                    profileLoadedTMP!.password=value;
 
                   },
                   onFieldSubmitted: (value) {
-                    profileLoadedTMP.password=value;
+                    profileLoadedTMP!.password=value;
 
                   },
                   validator: (value) {
@@ -643,7 +641,7 @@ GestureDetector(
     // File file;
     // base64Decode(profileLoadedTMP.userEntity.imageString64);
     //
-    String decodedString=profileLoadedTMP.imageString64??"";
+    String decodedString=profileLoadedTMP!.imageString64??"";
 
 
 
@@ -820,7 +818,7 @@ GestureDetector(
       }
       Uint8List _bytes=await _image.readAsBytes();
       String decodedString = base64.encode(_bytes);
-      profileLoadedTMP.imageString64=decodedString;
+      profileLoadedTMP!.imageString64=decodedString;
     });
   }
 
@@ -863,7 +861,7 @@ GestureDetector(
                     }
                       Uint8List _bytes=await tmp!.readAsBytes();
                       String decodedString = base64.encode(_bytes);
-                      profileLoadedTMP.imageString64=decodedString;
+                      profileLoadedTMP!.imageString64=decodedString;
                   shouldSave=true;
 
                   setState(() {

@@ -4,6 +4,7 @@ import 'package:chegg/core/routing/route_paths.dart';
 import 'package:chegg/core/ui/widget/LILA/custom_button.dart';
 import 'package:chegg/core/utils.dart';
 import 'package:chegg/features/presentation/screen/home/presentation/screens/transfer_info_screen.dart';
+import 'package:chegg/features/presentation/screen/home/presentation/screens/widgets/country_rate_card.dart';
 import 'package:chegg/features/presentation/screen/home/presentation/screens/widgets/provider_card.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -19,23 +20,23 @@ import '../../../../../../generated/l10n.dart';
 import '../../../../../../injection_container.dart';
 import '../../../../../../l10n/locale_provider.dart';
 import '../../../../../../l10n/selected_provider.dart';
+import '../../../../bloc/currency_rate/currency_rate_cubit.dart';
+import '../../../../bloc/exchange_currency/exchange_currency_cubit.dart';
 import '../../../../bloc/money_provider/money_provider_cubit.dart';
 
 
-class SendMoneyScreen extends AppStatefulWidget {
-  SendMoneyScreen({Key? key});
+class ExchangeMoneyScreen extends AppStatefulWidget {
+  ExchangeMoneyScreen({Key? key});
 
   @override
-  State<StatefulWidget> createState() => _SendMoneyScreenState();
+  State<StatefulWidget> createState() => _ExchangeMoneyScreenState();
 }
 
-class _SendMoneyScreenState extends StatefulWidgetState<SendMoneyScreen> {
+class _ExchangeMoneyScreenState extends StatefulWidgetState<ExchangeMoneyScreen> {
 
   @override
   void initState(){
-    // if(BlocProvider.of<MoneyProviderCubit>(context).state is MoneyProviderInitial)
-      BlocProvider.of<MoneyProviderCubit>(context).getMoneyProvider(uid:
-      Constants.UID);
+    BlocProvider.of<ExchangeCurrencyCubit>(context).getExchangeCurrency(code: "");
 
     super.initState();
 
@@ -77,7 +78,7 @@ class _SendMoneyScreenState extends StatefulWidgetState<SendMoneyScreen> {
                   Expanded(
                     child: Center(
                         child: _buildTitle(
-                          S.of(context).sendMoney,
+                          S.of(context).moneyExchange,
                             Styles.textStyle.copyWith(
                                 color: Styles.textBlackDarkColor,
                                 fontSize: Styles.fontSize20,
@@ -94,7 +95,7 @@ class _SendMoneyScreenState extends StatefulWidgetState<SendMoneyScreen> {
           CommonSizes.vCustomSpace(79.h),
           Center(
             child: _buildTitle(
-           S.of(context).pleaseSelectTheServiceProvider,
+           " 1 USD Dollar to other currency",
                 Styles.textStyle.copyWith(
                     color: Styles.textBlackDarkColor,
                     fontSize: Styles.fontSize15,
@@ -102,100 +103,40 @@ class _SendMoneyScreenState extends StatefulWidgetState<SendMoneyScreen> {
           ),
           CommonSizes.vCustomSpace(18.h),
 
-    BlocConsumer<MoneyProviderCubit,MoneyProviderState>(
+         Container(
+             width: 298.w,
+             child:  BlocConsumer<ExchangeCurrencyCubit,ExchangeCurrencyState>(
+              listener: (BuildContext, moneyProvider) {
+                if (moneyProvider is ExchangeCurrencyLoaded) {
 
-        listener:(context,moneyState) {
-          if (moneyState is MoneyProviderLoaded){
-            stateTmp=moneyState;
 
-          }
-        },
-        builder: (context,moneyState) {
-      if (moneyState is MoneyProviderLoaded ||
-          moneyState is UpdateProviderLoaded ) {
-        return
-
-          Expanded(
-              child: ListView.separated(
-                  itemBuilder: (BuildContext context, index) {
-                    return
-
-                      InkWell(
-                        onTap: () {
-
-                      if(index!=  Provider.of<SelectedProvider>(context, listen: false).index){
-                        Provider.of<SelectedProvider>(context, listen: false).setProvider(
-                            stateTmp.notes[index],index
-                        );}else{
-                        Provider.of<SelectedProvider>(context, listen: false).clearProvider();
-                      }
-
-                      setState((){
-
-                      });
-
+                }
+              }, builder: (context, moneystate) {
+            if (moneystate is ExchangeCurrencyLoaded)
+              return
+                ListView.separated(
+                    shrinkWrap:true,
+                    itemBuilder: (BuildContext context, index) {
+                      return
+                        CountryExhangeCard(name:
+                        moneystate.exchangeCurrencyModel[index].name??"",
+                          val: moneystate.exchangeCurrencyModel[index].val??1,);
                     },
-                    child:
-                    ProviderCard(
-
-                      index:index,
-                      providerEntity: stateTmp.notes[index],
-                    ));
-                  },
-                  separatorBuilder: (BuildContext context, index) =>
-                      CommonSizes.vCustomSpace(28.h),
-                  itemCount: stateTmp.notes.length));
-      }
+                    separatorBuilder: (BuildContext context, index) =>
+                        CommonSizes.vCustomSpace(28.h),
+                    itemCount: moneystate.exchangeCurrencyModel.length);
 
 
-      return Center(child: CircularProgressIndicator());
-    }),
+
+            return Center(child: CircularProgressIndicator());
+          })),
           CommonSizes.vCustomSpace(33.h),
-          _buildNextBtn(),
-          CommonSizes.vCustomSpace(85.h)
 
          ],
       )),
     );
   }
 
-  _buildNextBtn() {
-    return Center(
-      child: CustomButton(
-        text: "Next step",
-        style: Styles.fontStyle.copyWith(
-            color: Styles.textWhiteColor, fontSize: Styles.fontSize20),
-        withGradiant: false,
-        raduis: 33.r,
-        textAlign: TextAlign.center,
-        color: Styles.colorPrimary,
-        fillColor: Styles.colorPrimary,
-        width: 298.w,
-        height: 57.h,
-        alignmentDirectional: AlignmentDirectional.center,
-        onPressed: () async {
-
-if( Provider.of<SelectedProvider>(context, listen: false).isSelected) {
-  Utils.pushNewScreenWithRouteSettings(context,
-      withNavBar: false,
-      screen: TarnsferInfoScreen(
-          providerEntity:
-          Provider
-              .of<SelectedProvider>(context, listen: false)
-              .providerEntity
-      ),
-      settings: RouteSettings(
-        name: RoutePaths.TarnsferInfoScreen,
-      ));
-}else{
-  Utils.showToast("please a provider");
-
-}
-          //
-        },
-      ),
-    );
-  }
 
   _buildTitle(String text, TextStyle style) {
     return Text(

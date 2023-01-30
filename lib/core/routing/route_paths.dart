@@ -16,7 +16,6 @@ class RoutePaths {
   static const SettingScreen = '/SettingScreen';
   static const PaymentMethodScreen = '/PaymentMethodScreen';
   static const OrderDetailScreen = '/OrderDetailScreen';
-  static const AddNewProviderScreen = '/AddNewProviderScreen';
-  static const DetailsProviderScreen = '/DetailsProviderScreen';
+  static const ExchangeMoneyScreen = '/ExchangeMoneyScreen';
 }
 

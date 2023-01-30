@@ -5,20 +5,20 @@ import 'package:provider/provider.dart';
 
 import '../../../../../../../core/app/state/appstate.dart';
 import '../../../../../../../core/configurations/styles.dart';
-import '../../../../../../../core/routing/route_paths.dart';
 import '../../../../../../../core/shared_preferences_items.dart';
-import '../../../../../../../core/utils.dart';
 import '../../../../../../../injection_container.dart';
 import '../../../../../../../l10n/locale_provider.dart';
 import '../../../../../../../l10n/selected_provider.dart';
 import '../../../../../../domain/entities/provider_entity.dart';
-import '../detail_provider_screen.dart';
 
 
 class ProviderCard extends StatefulWidget {
   ProviderEntity providerEntity;
+  int index;
 bool isSelected ;
-  ProviderCard({required this.providerEntity,this.isSelected:false, Key? key}) : super(key: key);
+  ProviderCard({
+    required this.index,
+    required this.providerEntity,this.isSelected:false, Key? key}) : super(key: key);
 
   @override
   State<ProviderCard> createState() => _ProviderCardState();
@@ -30,14 +30,28 @@ class _ProviderCardState extends State<ProviderCard> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
+    return Container(
             padding: EdgeInsets.symmetric(horizontal: 29.w),
             child: Container(
               height: 127.h,
               width: 299.w,
               padding: EdgeInsets.symmetric(horizontal: 31.w),
-              decoration: Styles.decotrationBoxStyled(
+              decoration:
+              widget.index== Provider.of<SelectedProvider>(context, listen: false).index?
+              Styles.decotrationBorderBoxStyled(
+                  backgroundColor: Color(0xffE8F5ED),
+                  radius: 33.r,
+                  innerOffset1: Offset(0, 6.16),
+                  innerblurRadius1: 616,
+                  innerShadawColor1: Color(0xffEFFDF4),
+                  innerOffset2: Offset(0, -6.16),
+                  innerblurRadius2: 6.16,
+                  innerShadawColor2: Color(0xffDFECE4),
+                  dropblurRadius: 54.93,
+                  dropOffset: Offset(0, 27.47),
+                  dropShadawColor: Color(0xff2E312F1A).withOpacity(0.1035))
+                :
+              Styles.decotrationBoxStyled(
                   backgroundColor: Color(0xffE8F5ED),
                   radius: 33.r,
                   innerOffset1: Offset(0, 6.16),
@@ -67,8 +81,7 @@ class _ProviderCardState extends State<ProviderCard> {
                       height: 81.r,
                       width: 81.r,
                       // padding: EdgeInsets.all(8.w),
-                      decoration: widget.isSelected?
-                    Styles.decotrationBoxStyled(): Styles.decotrationBoxStyledWithGradient(
+                      decoration:   Styles.decotrationBoxStyledWithGradient(
                           radius: 54.r,
                           backgroundColor1: Color(0xff1B895A),
                           backgroundColor2: Color(0xff26BF7D),

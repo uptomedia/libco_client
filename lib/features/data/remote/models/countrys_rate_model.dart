@@ -20,11 +20,9 @@ class CountrysRatesModel {
   factory CountrysRatesModel.fromSnapshot(DocumentSnapshot documentSnapshot) {
     return CountrysRatesModel(
       dest: new CountryModel(name:
-      (documentSnapshot.data() as Map)[ 'dest']??
-          ""),
+      (documentSnapshot.data() as Map)['dest']??"us"),
       source: new CountryModel( name:
-      (documentSnapshot.data() as Map)['source']??
-          ""),
+      (documentSnapshot.data() as Map)['source']??"us"),
       rate: (documentSnapshot.data() as Map)['rate']??0.0,
       countryRateId:
       (documentSnapshot.data() as Map)['countryRateId']??"",
@@ -32,9 +30,6 @@ class CountrysRatesModel {
   }
 
   Map<String, dynamic> toDocument() {
-    return {"dest": this.dest!.name??"",
-      "source": source!.name??"",
-      "rate": rate,
-      "countryRateId":countryRateId};
+    return {"dest": this.dest, "source": source, "rate": rate,"countryRateId":countryRateId};
   }
 }

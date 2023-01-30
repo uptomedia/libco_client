@@ -739,6 +739,36 @@ class S {
       args: [],
     );
   }
+
+  /// `click here to see money\nexchange prices`
+  String get clickHereToSeeMoneyExchangePrices {
+    return Intl.message(
+      'click here to see money\nexchange prices',
+      name: 'clickHereToSeeMoneyExchangePrices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Receive money`
+  String get receiveMoney {
+    return Intl.message(
+      'Receive money',
+      name: 'receiveMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `money Exchange`
+  String get moneyExchange {
+    return Intl.message(
+      'money Exchange',
+      name: 'moneyExchange',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

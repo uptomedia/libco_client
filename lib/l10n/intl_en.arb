@@ -67,5 +67,8 @@
   "welcom": "welcom",
   "photolibrary": "photo library",
   "camera": "camera",
-  "cropper": "cropper"
-}
+  "cropper": "cropper",
+  "clickHereToSeeMoneyExchangePrices": "click here to see money\nexchange prices",
+  "receiveMoney": "Receive money",
+  "moneyExchange": "money Exchange"
+ }

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:chegg/core/configurations/assets.dart';
 import 'package:chegg/core/configurations/styles.dart';
 import 'package:chegg/core/features/feature/presentation/widgets/app_stateful_widget.dart';
@@ -109,30 +111,50 @@ class _TarnsferInfoScreenState extends StatefulWidgetState<TarnsferInfoScreen> {
           BlocConsumer<MoneyProviderCubit, MoneyProviderState>(
               listener: (BuildContext, moneyProvider) {
             if (moneyProvider is UpdateProviderLoaded) {
-              CountrySourceList = moneyProvider.countryList;
+              if(moneyProvider.countryList.length==0){
 
-              _chosenValue=CountrySourceList.first;
-              CountryDestationList = _filterList(
-                  CountrySourceList, _chosenValue!.dest!.name ?? "");
-                 _chosenValueDestion=_chosenValue;
+              }
+              else {
+                CountrySourceList = moneyProvider.countryList;
 
-              if(BlocProvider.of<CurrencyRateCubit>(context).state is CurrencyRateInitial){
+                _chosenValue = CountrySourceList.first;
+                List<CountrysRatesModel> tmp = CountrySourceList;
+                tmp = LinkedHashSet<CountrysRatesModel>.from(CountrySourceList)
+                    .toList();
+
+                CountryDestationList = _filterList(
+                    tmp, _chosenValue!.dest!.name ?? "");
+                _chosenValueDestion = _chosenValue;
+              }
+              if(BlocProvider.of<CurrencyRateCubit>(context).state is
+              CurrencyRateInitial){
                 BlocProvider.of<CurrencyRateCubit>(context)
                     .getCurrencyRate(
                     code:
                     _chosenValue!.source!.name??"USD");}
              }
           }, builder: (context, moneystate) {
-            if (moneystate is UpdateProviderLoaded)
-              return Column(
+
+            if (moneystate is UpdateProviderLoaded){
+               if(CountrySourceList.length==0){
+                return Center(child: Container(child:
+                _buildTitle("No Data",Styles.textStyle.copyWith(
+                    color: Styles.textBlackDarkColor,
+                    fontSize: Styles.fontSize15,
+                    fontWeight: FontWeight.w600))  )
+                );
+               }
+
+              return
+                Column(
                 children: [
                   _buildCountrySourceList(),
                   CommonSizes.vCustomSpace(20.h),
                   _buildCountryDestationList(),
                   CommonSizes.vCustomSpace(20.h),
                 ],
-              );
-            return CircularProgressIndicator();
+              );}
+            return Center(child: CircularProgressIndicator());
           }),
           CommonSizes.vCustomSpace(20.h),
           _buildCurrencyConveter(),
@@ -316,6 +338,13 @@ Utils.pushNewScreenWithRouteSettings(
   }
 
   _buildCountryDestationList() {
+
+     List<CountrysRatesModel> tmp=CountrySourceList;
+    tmp=  LinkedHashSet<CountrysRatesModel>.from(CountrySourceList).toList();
+
+    CountryDestationList = _filterList(
+        tmp, _chosenValue!.dest!.name ?? "");
+    _chosenValueDestion=_chosenValue;
     return Center(
       child: Container(
         height: 69.h,

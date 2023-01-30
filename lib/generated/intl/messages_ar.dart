@@ -22,94 +22,56 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "addNote": MessageLookupByLibrary.simpleMessage("Add Note"),
+        "addNote": MessageLookupByLibrary.simpleMessage("اضافة ملاحظة"),
         "addPost": MessageLookupByLibrary.simpleMessage("Add Post"),
         "address": MessageLookupByLibrary.simpleMessage("address"),
-        "allreadyHaveAccount":
-            MessageLookupByLibrary.simpleMessage("Allready have account? "),
-        "amountInCountry":
-            MessageLookupByLibrary.simpleMessage("amount in country"),
-        "amountInJod": MessageLookupByLibrary.simpleMessage("amount in jod"),
-        "apply": MessageLookupByLibrary.simpleMessage("Apply"),
+        "apply": MessageLookupByLibrary.simpleMessage("تطبيق"),
         "arabic": MessageLookupByLibrary.simpleMessage("arabic"),
-        "camera": MessageLookupByLibrary.simpleMessage("camera"),
-        "cancel": MessageLookupByLibrary.simpleMessage("cancel"),
-        "clear": MessageLookupByLibrary.simpleMessage("Clear"),
+        "cancel": MessageLookupByLibrary.simpleMessage("الغاء"),
+        "clear": MessageLookupByLibrary.simpleMessage("الغاء"),
         "close": MessageLookupByLibrary.simpleMessage("close"),
-        "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
-        "createNewAccount":
-            MessageLookupByLibrary.simpleMessage("Create new account"),
-        "createone": MessageLookupByLibrary.simpleMessage(" Create one"),
-        "cropper": MessageLookupByLibrary.simpleMessage("cropper"),
-        "destinationCountry":
-            MessageLookupByLibrary.simpleMessage("Destination country *"),
-        "dontHaveAccount":
-            MessageLookupByLibrary.simpleMessage("Don\'t have account?"),
         "editProfile": MessageLookupByLibrary.simpleMessage("edit Profile"),
         "email": MessageLookupByLibrary.simpleMessage("email"),
         "emptyFieldMessageError":
             MessageLookupByLibrary.simpleMessage("empty Field Message Error"),
         "english": MessageLookupByLibrary.simpleMessage("english"),
-        "feeType": MessageLookupByLibrary.simpleMessage("Fee type *"),
-        "forgotYourPassword":
-            MessageLookupByLibrary.simpleMessage("forgot your password?"),
-        "fullName": MessageLookupByLibrary.simpleMessage("Full name"),
         "german": MessageLookupByLibrary.simpleMessage("german"),
         "home": MessageLookupByLibrary.simpleMessage("home"),
         "invalidPassword": MessageLookupByLibrary.simpleMessage(
-            "Must be at least 6 characters long"),
-        "isNotEmpty":
-            MessageLookupByLibrary.simpleMessage("This Field can\'t be empty "),
-        "lIBCOEXCHANGE": MessageLookupByLibrary.simpleMessage("LIBCO EXCHANGE"),
-        "login": MessageLookupByLibrary.simpleMessage("Login"),
+            "كلمة السر يحب ات تكون على الاقل 6 محارف"),
+        "isNotEmpty": MessageLookupByLibrary.simpleMessage(
+            "هذا الحقل لايمكن ان يكون فارغ "),
+        "login": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
         "loginError": MessageLookupByLibrary.simpleMessage("login Error"),
-        "loginToYourAccount":
-            MessageLookupByLibrary.simpleMessage("login to your account"),
         "logout": MessageLookupByLibrary.simpleMessage("logout"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameContainText":
             MessageLookupByLibrary.simpleMessage("name Contain Text"),
-        "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("noInternetConnection"),
         "noItemsFound": MessageLookupByLibrary.simpleMessage("no Items Found"),
         "ok": MessageLookupByLibrary.simpleMessage("ok"),
-        "or": MessageLookupByLibrary.simpleMessage("OR"),
-        "password": MessageLookupByLibrary.simpleMessage("Password"),
-        "passwordHint": MessageLookupByLibrary.simpleMessage("Enter Password"),
-        "payInMethod": MessageLookupByLibrary.simpleMessage("Pay in method *"),
-        "payOutMethod":
-            MessageLookupByLibrary.simpleMessage("Pay out method *"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمة السر"),
+        "passwordHint":
+            MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور"),
         "personalInformation":
             MessageLookupByLibrary.simpleMessage("personal Information"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("phoneNumber"),
-        "photolibrary": MessageLookupByLibrary.simpleMessage("photo library"),
-        "pleaseFillYourInfoInOrderToCreateNewAccount":
-            MessageLookupByLibrary.simpleMessage(
-                "please fill your info in order\nto create new account"),
-        "pleaseSelectTheServiceProvider": MessageLookupByLibrary.simpleMessage(
-            "please select the service provider"),
-        "pressTwiceToExit":
-            MessageLookupByLibrary.simpleMessage("press twice to exit"),
         "profile": MessageLookupByLibrary.simpleMessage("profile"),
-        "promotionCode": MessageLookupByLibrary.simpleMessage("Promotion code"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "reload": MessageLookupByLibrary.simpleMessage("reload"),
         "save": MessageLookupByLibrary.simpleMessage("save"),
-        "select": MessageLookupByLibrary.simpleMessage("select"),
-        "sendMoney": MessageLookupByLibrary.simpleMessage("send money"),
-        "share": MessageLookupByLibrary.simpleMessage("Share"),
+        "share": MessageLookupByLibrary.simpleMessage("مشاركة"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
-        "studyUnit": MessageLookupByLibrary.simpleMessage("Study unit"),
-        "transferInfo": MessageLookupByLibrary.simpleMessage("Transfer info"),
+        "studyUnit": MessageLookupByLibrary.simpleMessage("وحدة الدراسة"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("tryAgain"),
-        "userName": MessageLookupByLibrary.simpleMessage("Username"),
-        "userNameHint": MessageLookupByLibrary.simpleMessage("Enter Username"),
+        "userName": MessageLookupByLibrary.simpleMessage("اسم المستخدم"),
+        "userNameHint":
+            MessageLookupByLibrary.simpleMessage("أدخل اسم المستخدم"),
         "weExperiencedAnErrorLoggingYouInWouldYouPlease":
             MessageLookupByLibrary.simpleMessage(
                 "we Experienced An Error Logging You In Would You Please"),
-        "welcom": MessageLookupByLibrary.simpleMessage("welcom"),
-        "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
-        "welcomeTo": MessageLookupByLibrary.simpleMessage("Welcome To")
+        "welcome": MessageLookupByLibrary.simpleMessage("اهلا !")
       };
 }

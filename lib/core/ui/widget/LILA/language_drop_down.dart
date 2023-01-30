@@ -61,7 +61,7 @@ class _LanguageDropDownState extends State<LanguageDropDown> {
   @override
   Widget build(BuildContext context) {
      return  Container(
-              decoration: BoxDecoration(
+             decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.all(Radius.circular(widget.cornerRadius)),
                 border: Border.all(
@@ -87,7 +87,6 @@ class _LanguageDropDownState extends State<LanguageDropDown> {
 
                     key: widget.key,
                     value: widget.initValue,
-
                     hint: Text(
                       widget.title,
                       style: TextStyle(
@@ -113,9 +112,7 @@ class _LanguageDropDownState extends State<LanguageDropDown> {
                         : null,
                     underline: Container(),
                     isExpanded: true,
-
-                    icon: Visibility (visible:false,
-                        child: Icon(Icons.arrow_downward)),
+                    icon: Visibility (visible:false, child: Icon(Icons.arrow_downward)),
 
                     items: widget.items
                         .map<DropdownMenuItem<String>>((String value) {

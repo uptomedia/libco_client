@@ -4,7 +4,6 @@ import 'package:chegg/core/routing/route_paths.dart';
 import 'package:chegg/core/routing/router.dart';
 import 'package:chegg/features/data/remote/models/transfer_info_model.dart';
 import 'package:chegg/features/presentation/bloc/currency_rate/currency_rate_cubit.dart';
-import 'package:chegg/features/presentation/bloc/exchange_currency/exchange_currency_cubit.dart';
 import 'package:chegg/features/presentation/screen/account/screens/provider/user_state_provider.dart';
 import 'package:chegg/features/presentation/screen/account/screens/welcome_screen.dart';
 import 'package:chegg/features/presentation/screen/navigation/presentation/screens/app_main_screen.dart';
@@ -21,6 +20,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'core/constants.dart';
+import 'features/presentation/bloc/exchange_currency/exchange_currency_cubit.dart';
 import 'features/presentation/bloc/money_provider/money_provider_cubit.dart';
 import 'features/presentation/bloc/tranfer_info/transfer_info_cubit.dart';
 import 'injection_container.dart' as di;
@@ -49,7 +49,7 @@ void main() async {
   ));
   SharedPreferences prefs = await SharedPreferences.getInstance();
    await di.init(prefs);
-
+flutter 
   runApp(Phoenix(
     child: MyApp(prefs),
   ));
@@ -75,9 +75,9 @@ class MyApp extends AppStatelessWidget {
         BlocProvider<MoneyProviderCubit>(create: (_) =>  di.sl<MoneyProviderCubit>()),
         BlocProvider<CurrencyRateCubit>(create: (_) =>  di.sl<CurrencyRateCubit>()),
         BlocProvider<TransferInfoCubit>(create: (_) =>  di.sl<TransferInfoCubit>()),
-        BlocProvider<ExchangeCurrencyCubit>(create: (_) =>  di.sl<ExchangeCurrencyCubit>()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
         ChangeNotifierProvider(create: (_) => SelectedProvider()),
+        BlocProvider<ExchangeCurrencyCubit>(create: (_) =>  di.sl<ExchangeCurrencyCubit>()),
 
       ],
       child: App(AppStateModel(preferences), preferences),

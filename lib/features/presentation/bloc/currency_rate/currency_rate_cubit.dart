@@ -7,6 +7,7 @@ import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../data/remote/models/currency_model.dart';
+import '../../../domain/entities/exchange_currency_entity.dart';
 
 part 'currency_rate_state.dart';
 
@@ -17,8 +18,6 @@ class CurrencyRateCubit extends Cubit<CurrencyRateState> {
 }
 
       ) : super(CurrencyRateInitial());
-
-
   GetCurrencyRateUseCase getCurrencyRateUseCase;
   Future<void> getCurrencyRate({
     required String code})async{

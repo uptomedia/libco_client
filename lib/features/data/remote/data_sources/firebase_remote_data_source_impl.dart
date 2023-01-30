@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:chegg/features/data/remote/models/countrys_rate_model.dart';
 import 'package:chegg/features/data/remote/models/currency_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -164,7 +163,6 @@ class FirebaseRemoteDataSourceImpl implements FirebaseRemoteDataSource {
 
  }
 
-
   @override
   Future<void> addNewTransferInfo(TransferInfoEntity noteEntity) async{
     final noteCollectionRef =
@@ -210,139 +208,16 @@ class FirebaseRemoteDataSourceImpl implements FirebaseRemoteDataSource {
 
   }
   @override
-  Future<void> addNewCountryRate(String subCollectionId,CountrysRatesModel countrysRatesModel) async{
-  try {
-    final noteCollectionRef =
-    firestore.collection("provider").doc(subCollectionId).collection(
-        "countryrate");
-
-    final noteId = noteCollectionRef
-        .doc()
-        .id;
-
-    noteCollectionRef.doc(noteId).get().then((note) {
-      final newTransferInfo = CountrysRatesModel(
-          source: countrysRatesModel.source,
-          dest: countrysRatesModel.dest,
-          rate: countrysRatesModel.rate,
-          countryRateId: noteId
-      ).toDocument();
-
-      if (!note.exists) {
-        noteCollectionRef.doc(noteId).set(newTransferInfo,SetOptions(merge: true));
-
-      }
-      return;
-    });
-  }
-  catch(e){
-print(e);
-  }
-  }
-
-  @override
-  Future<void> updateCountryRate(String subCollectionId,String docId,CountrysRatesModel countrysRatesModel) async{
-    try {
-      final noteCollectionRef =firestore.collection("provider").doc(subCollectionId).collection(
-          "countryrate");
-      final noteId = noteCollectionRef.doc().id;
-      noteCollectionRef.doc(noteId).get().then((note) {
-        final newTransferInfo = CountrysRatesModel(
-            source: countrysRatesModel.source,
-            dest: countrysRatesModel.dest,
-            rate: countrysRatesModel.rate,
-            countryRateId: noteId
-        ).toDocument();
-
-        if (!note.exists) {
-          noteCollectionRef.doc(noteId).set(newTransferInfo,SetOptions(merge: true));
-
-        }
-        return;
-      });
-    }
-    catch(e){
-      print(e);
-    }
-    // Map<String,dynamic> noteMap=Map();
-    //
-    //  if (note.name!=null) noteMap['name']=note.name;
-    // if (note.imagePath!=null) noteMap['imagePath'] =note.imagePath;
-    // noteCollectionRef.doc(note.providerId).update(noteMap);
-
-
-  }
-
-  @override
-  Future<void> deleteCountryRate(String subCollectionId,String docId,CountrysRatesModel countrysRatesModel) async{
-
-
-
-
-    try {
-      final noteCollectionRef =
-      firestore.collection("provider").doc(subCollectionId).collection(
-          "countryrate");
-
-      final noteId = noteCollectionRef
-          .doc()
-          .id;
-
-      noteCollectionRef.doc(noteId).get().then((note) {
-
-        if (!note.exists) {
-          if (note.exists){
-            noteCollectionRef.doc(docId).delete();
-          }
-
- 
-        }
-        return;
-      });
-    }
-    catch(e){
-      print(e);
-    }
-  }
-
-  @override
-  Future<void> addNewExchangeCurrency(ExchangeCurrencyEntity exchangeCurrencyEntity) async{
-    try {
-      final noteCollectionRef =
-      firestore.collection("exchangeCurreny") ;
-
-      final noteId = noteCollectionRef
-          .doc()
-          .id;
-
-      noteCollectionRef.doc(noteId).get().then((note) {
-        final newTransferInfo = ExchangeCurrencyModel(
-            name: exchangeCurrencyEntity.name,
-            val: exchangeCurrencyEntity.val
-        ).toDocument();
-
-        if (!note.exists) {
-          noteCollectionRef.doc(noteId).set(newTransferInfo,SetOptions(merge: true));
-
-        }
-        return;
-      });
-    }
-    catch(e){
-      print(e);
-    }
-  }
-  @override
   Stream<List<ExchangeCurrencyEntity>> getExchangeCurrency(String code)   {
 
-      final noteCollectionRef =
-      firestore.collection("exchangeCurreny") ;
+    final noteCollectionRef =
+    firestore.collection("exchangeCurreny") ;
 
 
     return noteCollectionRef.snapshots().map((querySnap  ) {
-        return querySnap.docs.map((docSnap  ) =>
-            ExchangeCurrencyModel.fromSnapshot(docSnap)).toList();
-      });
+      return querySnap.docs.map((docSnap  ) =>
+          ExchangeCurrencyModel.fromSnapshot(docSnap)).toList();
+    });
 
- }
+  }
 }

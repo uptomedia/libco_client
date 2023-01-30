@@ -1,5 +1,3 @@
-import 'package:chegg/features/data/remote/models/countrys_rate_model.dart';
-
 import '../../../domain/entities/currency_rate_entity.dart';
 import '../../../domain/entities/exchange_currency_entity.dart';
 import '../../../domain/entities/provider_entity.dart';
@@ -24,11 +22,8 @@ abstract class FirebaseRemoteDataSource {
   Future<void> updateProfile(UserEntity note);
   Future<UserEntity> getProfile(String uid);
   Future<CurrencyRateEntity> getCurrencyRate(String uid);
-  Stream<List<ExchangeCurrencyEntity>> getExchangeCurrency(String uid);
   Future<void> addNewTransferInfo(TransferInfoEntity note);
     Stream<List<TransferInfoEntity>> getTransferInfo();
-  Future<void> addNewCountryRate(String subCollection,CountrysRatesModel countrysRatesModel);
-  Future<void> updateCountryRate(String subCollection,String docId,CountrysRatesModel countrysRatesModel);
-  Future<void> addNewExchangeCurrency(ExchangeCurrencyEntity exchangeCurrencyEntity);
+  Stream<List<ExchangeCurrencyEntity>> getExchangeCurrency(String uid);
 
 }

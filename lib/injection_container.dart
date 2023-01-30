@@ -1,12 +1,7 @@
 import 'package:chegg/core/platform/network_info.dart';
-import 'package:chegg/features/domain/use_cases/add_new_country_rate_usecase.dart';
-import 'package:chegg/features/domain/use_cases/add_new_exhcange_currency_usecase.dart';
 import 'package:chegg/features/domain/use_cases/add_new_provider_usecase.dart';
-import 'package:chegg/features/domain/use_cases/delete_country_rate_usecase.dart';
 import 'package:chegg/features/domain/use_cases/get_currency_rate_usecase.dart';
-import 'package:chegg/features/domain/use_cases/get_exhange_currency_usecase.dart';
 import 'package:chegg/features/domain/use_cases/get_profile_usecase.dart';
-import 'package:chegg/features/domain/use_cases/update_country_rate_usecase.dart';
 import 'package:chegg/features/domain/use_cases/update_profile_usecase.dart';
 import 'package:chegg/features/presentation/bloc/currency_rate/currency_rate_cubit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -22,6 +17,7 @@ import 'features/domain/use_cases/add_new_transfer_info_usecase.dart';
 import 'features/domain/use_cases/delete_provider_usecase.dart';
 import 'features/domain/use_cases/get_create_current_user_usecase.dart';
 import 'features/domain/use_cases/get_current_uid_usecase.dart';
+import 'features/domain/use_cases/get_exhange_currency_usecase.dart';
 import 'features/domain/use_cases/get_provider_usecase.dart';
 import 'features/domain/use_cases/get_transfer_info_usecase.dart';
 import 'features/domain/use_cases/is_sign_in_usecase.dart';
@@ -54,15 +50,7 @@ Future<void>
       deleteProviderUseCase: sl.call(),
       addNewProviderUseCase: sl.call(),
       updateProviderUseCase: sl.call(),
-      getProviderUseCase: sl.call(),
-      addNewCountryRateUseCase: sl.call(),
-   updateCountryRateUseCase: sl.call(),
-   deleteCountryRateUseCase: sl.call()
-
-  ));
-  sl.registerFactory<ExchangeCurrencyCubit>(() => ExchangeCurrencyCubit(
-    addNewExchangeCurrencyUseCase: sl.call(),
-      getExchangeCurrencyUseCase: sl.call()
+      getProviderUseCase: sl.call()
 
   ));
   sl.registerFactory<TransferInfoCubit>(() => TransferInfoCubit(
@@ -72,6 +60,10 @@ Future<void>
   ));
   sl.registerFactory<CurrencyRateCubit>(() => CurrencyRateCubit(
      getCurrencyRateUseCase: sl.call(),
+
+  ));
+  sl.registerFactory<ExchangeCurrencyCubit>(() => ExchangeCurrencyCubit(
+   getExchangeCurrencyUseCase: sl.call(),
 
   ));
   sl.registerLazySingleton<GetProviderUseCase>(
@@ -104,17 +96,10 @@ Future<void>
       () => AddNewTransferInfoUseCase(repository: sl.call()));
   sl.registerLazySingleton<GetTransferInfoUseCase>(
       () => GetTransferInfoUseCase(repository: sl.call()));
-
-  sl.registerLazySingleton<AddNewCountryRateUseCase>(
-          () => AddNewCountryRateUseCase(repository: sl.call()));
-  sl.registerLazySingleton<UpdateCountryRateUseCase >(
-          () => UpdateCountryRateUseCase(repository:  sl.call()));
-  sl.registerLazySingleton<DeleteCountryRateUseCase >(
-          () => DeleteCountryRateUseCase(repository:  sl.call()));
-  sl.registerLazySingleton<AddNewExchangeCurrencyUseCase >(
-          () => AddNewExchangeCurrencyUseCase(repository:  sl.call()));
   sl.registerLazySingleton<GetExchangeCurrencyUseCase >(
           () => GetExchangeCurrencyUseCase(repository:  sl.call()));
+
+
   //repository
   sl.registerLazySingleton<FirebaseRepository>(
       () => FirebaseRepositoryImpl(remoteDataSource: sl.call()));

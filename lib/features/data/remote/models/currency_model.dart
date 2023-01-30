@@ -6,6 +6,7 @@ import '../../../domain/entities/user_entity.dart';
 
    class CurrencyRateModel extends CurrencyRateEntity{
   Data? _data;
+  List<ExchangeCurrency>? exhangeList;
 
   CurrencyRateModel({Data? data}) {
   if (data != null) {
@@ -31,6 +32,7 @@ import '../../../domain/entities/user_entity.dart';
   }
 
   class Data {
+     List<ExchangeCurrency>? exchangeCurrexncy;
     double? _aUD;
   double? _bGN;
   double? _bRL;
@@ -98,7 +100,9 @@ import '../../../domain/entities/user_entity.dart';
   double? tHB,
   double? tRY,
   double? uSD,
-  double? zAR}) {
+  double? zAR,
+    List<ExchangeCurrency>? exchangeCurrexncy
+  }) {
   if (aUD != null) {
   this._aUD = aUD;
   }
@@ -269,14 +273,41 @@ import '../../../domain/entities/user_entity.dart';
 
   Data.fromJson(Map<String, dynamic> json) {
     _aUD = double.tryParse(json['AUD'].toString()) ;
+    if(_aUD!=null){
+      exchangeCurrexncy?.add( ExchangeCurrency(name: "AUD",
+        val:_aUD??1.0 ));}
     _bGN = double.tryParse(json['BGN'].toString());
+    if(_bGN!=null){
+      exchangeCurrexncy?.add( ExchangeCurrency(name: "BGN",
+          val:_bGN??1.0 ));}
     _bRL = double.tryParse( json['BRL'].toString());
+    if(_bRL!=null){
+      exchangeCurrexncy?.add( ExchangeCurrency(name: "BRL",
+          val:_bRL??1.0 ));}
     _cAD = double.tryParse( json['CAD'].toString());
+    if(_cAD!=null){
+      exchangeCurrexncy?.add( ExchangeCurrency(name: "CAD",
+          val:_cAD??1.0 ));}
     _cHF = double.tryParse( json['CHF'].toString());
+    if(_cHF!=null){
+      exchangeCurrexncy?.add( ExchangeCurrency(name: "CHF",
+          val:_cHF??1.0 ));}
     _cNY = double.tryParse( json['CNY'].toString());
+    if(_cNY!=null){
+      exchangeCurrexncy?.add( ExchangeCurrency(name: "CNY",
+          val:_cNY??1.0 ));}
     _cZK = double.tryParse( json['CZK'].toString());
+    if(_cZK!=null){
+      exchangeCurrexncy?.add( ExchangeCurrency(name: "CZK",
+          val:_cZK??1.0 ));}
     _dKK = double.tryParse( json['DKK'].toString());
+    if(_dKK!=null){
+      exchangeCurrexncy?.add( ExchangeCurrency(name: "DKK",
+          val:_dKK??1.0 ));}
     _eUR = double.tryParse( json['EUR'].toString());
+    if(_eUR!=null){
+      exchangeCurrexncy?.add( ExchangeCurrency(name: "EUR",
+          val:_eUR??1.0 ));}
     _gBP = double.tryParse( json['GBP'].toString());
     _hKD = double.tryParse( json['HKD'].toString());
     _hRK = double.tryParse( json['HRK'].toString());
@@ -341,3 +372,10 @@ import '../../../domain/entities/user_entity.dart';
   return data;
   }
   }
+class ExchangeCurrency{
+     String name;
+     double val;
+     ExchangeCurrency({
+       this.name:"us",this.val:1
+});
+}

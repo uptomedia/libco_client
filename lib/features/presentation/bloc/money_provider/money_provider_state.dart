@@ -16,10 +16,6 @@ class MoneyProviderLoading extends MoneyProviderState {
   @override
   List<Object> get props => [];
 }
-class AddMoneyProviderLoaded extends MoneyProviderState {
-  @override
-  List<Object> get props => [];
-}
 class UpdateProviderLoaded extends MoneyProviderState {
   final List<CountrysRatesModel> countryList;
   UpdateProviderLoaded({required this.countryList});
@@ -41,13 +37,3 @@ class MoneyProviderLoaded extends MoneyProviderState {
   @override
   List<Object> get props => [notes];
 }
-class AddCountryRateLoaded extends MoneyProviderState {
-  @override
-  List<Object> get props => [];
-}
-class UpdateCountryRateLoaded extends MoneyProviderState {
-  @override
-  List<Object> get props => [];}
-class DeleteCountryRateLoaded extends MoneyProviderState {
-  @override
-  List<Object> get props => [];}

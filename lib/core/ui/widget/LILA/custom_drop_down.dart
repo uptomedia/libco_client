@@ -134,8 +134,8 @@ class _CustomDropDownState extends State<CustomDropDown> {
                                   //AppHelperFunctions.getStylesStatusButton(getIndex(value,code)),
 
                                   child:
-                                  Flag.fromString(
-                                    value.dest!.name??"jo",
+                                  Flag.fromString(value.dest!.name==""?'us'
+                                   : value.dest!.name??"us",
                                   ),                      ),
                               SizedBox(
                                 width: MediaQuery.of(context).size.width * 0.03,

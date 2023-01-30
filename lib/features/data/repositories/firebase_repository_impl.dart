@@ -1,4 +1,3 @@
-import 'package:chegg/features/data/remote/models/countrys_rate_model.dart';
 import 'package:chegg/features/domain/entities/currency_rate_entity.dart';
 
 import '../../domain/entities/exchange_currency_entity.dart';
@@ -59,9 +58,6 @@ class FirebaseRepositoryImpl extends FirebaseRepository {
   @override
   Future<CurrencyRateEntity> getCurrencyRate(String uid) async =>
       remoteDataSource.getCurrencyRate(uid);
-  @override
-  Stream<List<ExchangeCurrencyEntity>> getExchangeCurrency(String uid)   =>
-      remoteDataSource.getExchangeCurrency(uid);
 
 
   @override
@@ -72,19 +68,7 @@ class FirebaseRepositoryImpl extends FirebaseRepository {
   Stream<List<TransferInfoEntity>> getTransferInfo() =>
       remoteDataSource.getTransferInfo();
   @override
-  Future<void> addNewCountryRate(String subCollectionID,CountrysRatesModel countrysRatesModel) async =>
-      remoteDataSource.addNewCountryRate(subCollectionID,countrysRatesModel);
-  @override
-  Future<void> updateCountryRate(String subCollectionID,
-      String docId,
-      CountrysRatesModel countrysRatesModel) async =>
-      remoteDataSource.updateCountryRate(subCollectionID,docId,countrysRatesModel);
-  @override
-  Future<void> deleteCountryRate(String subCollectionID,
-      String docId,
-      CountrysRatesModel countrysRatesModel) async =>
-      remoteDataSource.addNewCountryRate(subCollectionID,countrysRatesModel);
-  @override
-  Future<void> addNewExchangeCurrency(ExchangeCurrencyEntity exchangeCurrencyEntity) async =>
-      remoteDataSource.addNewExchangeCurrency(exchangeCurrencyEntity );
+  Stream<List<ExchangeCurrencyEntity>> getExchangeCurrency(String uid)   =>
+      remoteDataSource.getExchangeCurrency(uid);
+
 }

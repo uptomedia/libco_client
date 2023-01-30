@@ -16,7 +16,8 @@ class ExchangeCurrencyModel extends ExchangeCurrencyEntity {
 
     return ExchangeCurrencyModel(
         name:(documentSnapshot.data() as Map)['name']??"no name",
-        val: double.tryParse((
+        val:
+        double.tryParse((
             documentSnapshot.data() as Map)['val'].toString())??1.0,
 
 

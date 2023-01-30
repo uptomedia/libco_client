@@ -15,7 +15,6 @@ import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
   import '../../../../../domain/entities/user_entity.dart';
-import '../../../home/presentation/screens/exchange_table_screen.dart';
 import '../../../home/presentation/screens/home_screen.dart';
 import 'custom_nav_bar.dart';
 
@@ -54,7 +53,7 @@ class _AppMainScreenState extends StatefulWidgetState<AppMainScreen>
   List<Widget> _buildScreens() {
     return [
       HomeScreen(userEntity: widget.userEntity,),
-      ExchangeTableScreen(),
+      HomeScreen(userEntity: widget.userEntity),
       ProfileScreen(),
       SettingScreen(),
     ];
@@ -83,30 +82,17 @@ class _AppMainScreenState extends StatefulWidgetState<AppMainScreen>
       ),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(
-          Assets.SVG_Navigation_homeActive,
+          Assets.SVG_Navigation_whatsappActive,
           fit: BoxFit.scaleDown,
         ),
         inactiveIcon: SvgPicture.asset(
-          Assets.SVG_Navigation_home,
+          Assets.SVG_Navigation_whatsapp,
           fit: BoxFit.scaleDown,
         ),
         title: S.of(context).home,
         activeColorPrimary: Styles.colorPrimary,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-      // PersistentBottomNavBarItem(
-      //   icon: SvgPicture.asset(
-      //     Assets.SVG_Navigation_whatsappActive,
-      //     fit: BoxFit.scaleDown,
-      //   ),
-      //   inactiveIcon: SvgPicture.asset(
-      //     Assets.SVG_Navigation_whatsapp,
-      //     fit: BoxFit.scaleDown,
-      //   ),
-      //   title: S.of(context).home,
-      //   activeColorPrimary: Styles.colorPrimary,
-      //   inactiveColorPrimary: CupertinoColors.systemGrey,
-      // ),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(
           Assets.SVG_Navigation_profileActive,
@@ -141,7 +127,64 @@ class _AppMainScreenState extends StatefulWidgetState<AppMainScreen>
     return Scaffold(
         resizeToAvoidBottomInset: true,
         body:
-             PersistentTabView.custom(
+            // PersistentTabView(
+            //   context,
+            //   controller: _controller,
+            //   screens: _buildScreens(),
+            //   items: _navBarsItems(),
+            //   confineInSafeArea: true,
+            //
+            //   backgroundColor: Colors.white,
+            //   // Default is Colors.white.
+            //   handleAndroidBackButtonPress: true,
+            //   // Default is true.
+            //   resizeToAvoidBottomInset: true,
+            //   // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+            //   stateManagement: true,
+            //   // Default is true.
+            //   hideNavigationBarWhenKeyboardShows: true,
+            //   // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+            //   decoration: NavBarDecoration(
+            //     borderRadius: BorderRadius.circular(10.0),
+            //     colorBehindNavBar: Colors.white,
+            //   ),
+            //   popAllScreensOnTapOfSelectedTab: false,
+            //   popActionScreens: PopActionScreensType.all,
+            //
+            //   itemAnimationProperties: ItemAnimationProperties(
+            //     // Navigation Bar's items animation properties.
+            //     duration: Duration(milliseconds: 300),
+            //     curve: Curves.ease,
+            //   ),
+            //   screenTransitionAnimation: ScreenTransitionAnimation(
+            //     // Screen transition animation on change of selected tab.
+            //     animateTabTransition: true,
+            //     curve: Curves.ease,
+            //     duration: Duration(milliseconds: 300),
+            //   ),
+            //     onWillPop:  (context) async {
+            //       FocusScope.of(context!).unfocus();
+            //
+            //       DateTime currentTime = DateTime.now();
+            //       bool backButtonHasNotBeenPressedOrSnackBarHasBeenClosed =
+            //           backButtonPressTime == null ||
+            //               currentTime.difference(backButtonPressTime!) >
+            //                   flutterToastDuration;
+            //       if (backButtonHasNotBeenPressedOrSnackBarHasBeenClosed) {
+            //         backButtonPressTime = currentTime;
+            //
+            //         Utils.showToast("S.of(context!).pressTwiceToExit");
+            //         return false;
+            //       } else {
+            //         SystemNavigator.pop();
+            //
+            //         return true;
+            //       }
+            //       },
+            //   navBarStyle: NavBarStyle
+            //       .style1, // Choose the nav bar style with this property.
+            // )
+            PersistentTabView.custom(
           context,
           controller: _controller,
           screens: _buildScreens(),

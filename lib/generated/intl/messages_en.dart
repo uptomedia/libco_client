@@ -35,6 +35,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "camera": MessageLookupByLibrary.simpleMessage("camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("cancel"),
         "clear": MessageLookupByLibrary.simpleMessage("Clear"),
+        "clickHereToSeeMoneyExchangePrices":
+            MessageLookupByLibrary.simpleMessage(
+                "click here to see money\nexchange prices"),
         "close": MessageLookupByLibrary.simpleMessage("close"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
         "createNewAccount":
@@ -66,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginToYourAccount":
             MessageLookupByLibrary.simpleMessage("login to your account"),
         "logout": MessageLookupByLibrary.simpleMessage("logout"),
+        "moneyExchange": MessageLookupByLibrary.simpleMessage("money Exchange"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameContainText":
             MessageLookupByLibrary.simpleMessage("name Contain Text"),
@@ -93,6 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("press twice to exit"),
         "profile": MessageLookupByLibrary.simpleMessage("profile"),
         "promotionCode": MessageLookupByLibrary.simpleMessage("Promotion code"),
+        "receiveMoney": MessageLookupByLibrary.simpleMessage("Receive money"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "reload": MessageLookupByLibrary.simpleMessage("reload"),
         "save": MessageLookupByLibrary.simpleMessage("save"),

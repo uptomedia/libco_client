@@ -13,19 +13,22 @@ class SelectedProvider extends ChangeNotifier {
     countryrate: Stream.empty()
   );
 bool _isSelected=false;
+int _index=-1;
   ProviderEntity get providerEntity => _providerEntity;
+  int get index => _index;
   UserEntity get userEntity => _userEntity;
   bool get isSelected => _isSelected;
   late UserEntity _userEntity;
   void setUserEntity(UserEntity selected) {
     _userEntity = selected;
-
-    // Constants.countrysList=selected.countryrate.single;
+     // Constants.countrysList=selected.countryrate.single;
     notifyListeners();
   }
-  void setProvider(ProviderEntity selected) {
+  void setProvider(ProviderEntity selected,int indexVal) {
     _isSelected=true;
     _providerEntity = selected;
+    _index=indexVal;
+
     Constants.countrysList=[];
 
     // Constants.countrysList=selected.countryrate.single;
@@ -35,7 +38,7 @@ bool _isSelected=false;
   void clearProvider() {
     _isSelected=false;
     Constants.countrysList=[];
-
+    _index=-1;
     _providerEntity = ProviderEntity(
         name: "",
         imagePath: "",
